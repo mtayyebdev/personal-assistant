@@ -1,6 +1,6 @@
 import { chatHistory, userData } from "./user_data.js";
 
-const API_KEY = "AIzaSyAbtRVQySzE1adASkDktpBxDd5zzWI5k5M";
+const API_KEY = "AIzaSyC_MphMS4dI5acuFMS9T_i4zYM5P2PQyXs";
 const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
 const input = document.getElementById("inputBox");
@@ -27,37 +27,6 @@ setInterval(() => {
   });
 }, 1000);
 
-function getWeather() {
-  const apiKey = "CnqVZ8jtTAOpzh3uaCH6fGdc5k34G8QZ";
-
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      const { latitude, longitude } = position.coords;
-      fetch(
-        `https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apiKey}&q=${latitude},${longitude}`
-      )
-        .then((res) => res.json())
-        .then((locationData) => {
-          const locationKey = locationData.Key;
-          const cityName = locationData.LocalizedName;
-
-          fetch(
-            `https://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${apiKey}`
-          )
-            .then((res) => res.json())
-            .then((data) => {
-              const weatherText = data[0].WeatherText;
-              const temp = data[0].Temperature.Metric.Value;
-              document.getElementById("weather").innerHTML = `
-                <h3>Weather in ${cityName}:</h3>
-                <h4 style="margin-top:-10px;">${weatherText}, ${temp}°C</h4>`;
-            });
-        });
-    },
-    () => console.log("Geolocation permission denied.")
-  );
-}
-
 function arrayToParagraph(text) {
   if (Array.isArray(text)) text = text.join(" ");
   return text
@@ -79,7 +48,9 @@ function speakText(text) {
     }
   }
 
-  responsiveVoice.speak(newText, "Hindi Male", {
+  const voice = "Hindi Male" || "Hindi Female";
+
+  responsiveVoice.speak(newText, voice, {
     pitch: 1,
     rate: 1,
     onstart: () => {
@@ -133,19 +104,18 @@ async function StartJarvis(promptText) {
           {
             text: `
             About You:
-              Name: ${userData[0]["assistant Name"]}
-              More: ${userData[0]["about assistant"]}
+              Name: ${userData[0]["Assistant Name"]}
+              More: ${userData[0]["About assistant"]}
 
             About Me:
-              Name: ${userData[0]["user"]}
-              Age: ${userData[0]["user age"]}
-              Skills: ${userData[0]["user skills"]}
-              Friends: ${userData[0]["user friends"]}
-              Education: ${userData[0]["user education"]}
-              Address: ${userData[0]["user address"]}
+              Name: ${userData[0]["User Name"]}
+              Age: ${userData[0]["User age"]}
+              Skills: ${userData[0]["User skills"]}
+              Education: ${userData[0]["User education"]}
+              Address: ${userData[0]["User address"]}
 
             Chat History:\n${chatHistory
-              .map((chat) => `User: ${chat.user}\nJarvis: ${chat.jarvis}`)
+              .map((chat) => `User: ${chat.user}\nYou: ${chat.jarvis}`)
               .join("\n")}
 
             Prompt: ${promptText}
@@ -260,7 +230,4 @@ document.addEventListener(
   },
   { once: true }
 );
-getWeather();
-
-getWeather();
 startVoice.onclick = startVoiceHandler;

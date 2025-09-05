@@ -1,0 +1,431 @@
+.center-logo-con {
+    position: absolute;
+    width: 100%;
+    height: 93vh;
+    z-index: -2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#jarvis-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hover areas - invisible triggers - now click triggers */
+#jarvis-container .hover-area {
+    position: absolute;
+    z-index: 10;
+    cursor: pointer;
+}
+
+#jarvis-container .hover-top {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 100px;
+}
+
+#jarvis-container .hover-right {
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100px;
+    height: 200px;
+}
+
+#jarvis-container .hover-bottom {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 100px;
+}
+
+#jarvis-container .hover-left {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100px;
+    height: 200px;
+}
+
+/* Sectored panels */
+#jarvis-container .sector-panel {
+    position: absolute;
+    z-index: 20;
+    background: rgba(0, 255, 255, 0.1);
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    backdrop-filter: blur(15px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: none;
+}
+
+#jarvis-container .sector-panel.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Top sector - rotated 180deg so narrow end points to logo */
+#jarvis-container .sector-top {
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-30px) rotate(180deg);
+    width: 140px;
+    height: 120px;
+    clip-path: polygon(33% 0, 61% 0, 100% 100%, 0% 100%);
+}
+
+#jarvis-container .sector-top.active {
+    transform: translateX(-50%) translateY(0) rotate(180deg);
+}
+
+/* Right sector - rotated 270deg so narrow end points to logo */
+#jarvis-container .sector-right {
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%) translateX(30px) rotate(270deg);
+    width: 140px;
+    height: 120px;
+    clip-path: polygon(33% 0, 61% 0, 100% 100%, 0% 100%);
+}
+
+#jarvis-container .sector-right.active {
+    transform: translateY(-50%) translateX(0) rotate(270deg);
+}
+
+/* Bottom sector - no rotation so narrow end points to logo */
+#jarvis-container .sector-bottom {
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px) rotate(0deg);
+    width: 140px;
+    height: 120px;
+    clip-path: polygon(33% 0, 61% 0, 100% 100%, 0% 100%);
+}
+
+#jarvis-container .sector-bottom.active {
+    transform: translateX(-50%) translateY(0) rotate(0deg);
+}
+
+/* Left sector - rotated 90deg so narrow end points to logo */
+#jarvis-container .sector-left {
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%) translateX(-30px) rotate(90deg);
+    width: 140px;
+    height: 120px;
+    clip-path: polygon(33% 0, 61% 0, 100% 100%, 0% 100%);
+}
+
+#jarvis-container .sector-left.active {
+    transform: translateY(-50%) translateX(0) rotate(90deg);
+}
+
+/* Panel content */
+#jarvis-container .panel-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 10px;
+}
+
+#jarvis-container .panel-btn {
+    background: transparent;
+    /* border: 1px solid rgba(0, 255, 255, 0.5); */
+    border: none;
+    color: #00ffff;
+    padding: 8px 12px;
+    margin: 3px 0;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Courier New', monospace;
+    width: 90%;
+    text-align: center;
+}
+
+#jarvis-container .panel-btn:hover {
+    background: rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+}
+
+/* Main logo styles */
+#jarvis-container .main-circle {
+    width: 200px;
+    height: 200px;
+    border: 2px solid #00ffff;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: pulse 2s ease-in-out infinite;
+    z-index: 5;
+}
+
+#jarvis-container .inner-circle {
+    width: 120px;
+    height: 120px;
+    border: 1px solid #0099cc;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: rotate 4s linear infinite;
+}
+
+#jarvis-container .core {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, #00ffff, #0066cc);
+    border-radius: 50%;
+    box-shadow:
+        0 0 20px #00ffff,
+        0 0 40px #00ffff,
+        0 0 60px #00ffff;
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+/* Orbital rings */
+#jarvis-container .orbital-ring {
+    position: absolute;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: rotate 6s linear infinite;
+}
+
+#jarvis-container .ring-1 {
+    width: 160px;
+    height: 160px;
+    animation-duration: 8s;
+    border-color: rgba(0, 255, 255, 0.4);
+}
+
+#jarvis-container .ring-2 {
+    width: 240px;
+    height: 240px;
+    animation-duration: 12s;
+    animation-direction: reverse;
+    border-color: rgba(0, 153, 204, 0.3);
+}
+
+#jarvis-container .ring-3 {
+    width: 300px;
+    height: 300px;
+    animation-duration: 16s;
+    border-color: rgba(0, 255, 255, 0.2);
+}
+
+/* Floating elements */
+#jarvis-container .floating-element {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #00ffff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00ffff;
+    animation: float 3s ease-in-out infinite;
+}
+
+#jarvis-container .element-1 {
+    top: 50px;
+    left: 100px;
+    animation-delay: 0s;
+}
+
+#jarvis-container .element-2 {
+    top: 80px;
+    right: 80px;
+    animation-delay: 1s;
+}
+
+#jarvis-container .element-3 {
+    bottom: 100px;
+    left: 80px;
+    animation-delay: 2s;
+}
+
+#jarvis-container .element-4 {
+    bottom: 70px;
+    right: 100px;
+    animation-delay: 1.5s;
+}
+
+#jarvis-container .element-5 {
+    top: 120px;
+    left: 50px;
+    animation-delay: 0.5s;
+}
+
+#jarvis-container .element-6 {
+    top: 150px;
+    right: 50px;
+    animation-delay: 2.5s;
+}
+
+/* Scanning lines */
+#jarvis-container .scan-line {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            #00ffff,
+            transparent);
+    animation: scan 3s linear infinite;
+}
+
+#jarvis-container .scan-line-2 {
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(0deg,
+            transparent,
+            #00ffff,
+            transparent);
+    animation: scan-vertical 4s linear infinite;
+}
+
+
+
+/* Text elements */
+#jarvis-container .jarvis-text {
+    position: absolute;
+    bottom: -60px;
+    color: #00ffff;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 0 0 10px #00ffff;
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+/* Animations */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes glow {
+    0% {
+        box-shadow:
+            0 0 20px #00ffff,
+            0 0 40px #00ffff,
+            0 0 60px #00ffff;
+    }
+
+    100% {
+        box-shadow:
+            0 0 30px #00ffff,
+            0 0 60px #00ffff,
+            0 0 90px #00ffff;
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px) scale(1);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: translateY(-20px) scale(1.2);
+        opacity: 1;
+    }
+}
+
+@keyframes scan {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes scan-vertical {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes textGlow {
+    0% {
+        text-shadow: 0 0 10px #00ffff;
+    }
+
+    100% {
+        text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff;
+    }
+}
+
+
+/* Panel icons */
+#jarvis-container .panel-icon {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #00ffff;
+}
+
+/* Panel titles */
+#jarvis-container .panel-title {
+    color: #00ffff;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    font-family: 'Courier New', monospace;
+}

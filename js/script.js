@@ -3,29 +3,9 @@ import { chatHistory, userData } from "./user_data.js";
 const API_KEY = "AIzaSyC_MphMS4dI5acuFMS9T_i4zYM5P2PQyXs";
 const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
-const input = document.getElementById("inputBox");
-const selectorBox = document.getElementById("search_selector");
-const output = document.getElementById("output");
-const submit = document.getElementById("submit");
-const startVoice = document.getElementById("startVoice");
-const jarvis_speaking_img = document.getElementById("jarvis_speaking");
-const time_div = document.getElementById("time");
-const online_div = document.getElementById("online");
-const battery_div = document.getElementById("battery");
-const date_div = document.getElementById("date");
+let assistentStatus = document.getElementById("assistentStatus");
 
 let recognition;
-
-setInterval(() => {
-  const now = new Date();
-  time_div.innerHTML = now.toLocaleTimeString();
-  date_div.innerHTML = now.toLocaleDateString();
-  online_div.innerHTML = window.navigator.onLine ? "🟢 Online" : "🔴 Offline";
-
-  navigator.getBattery().then((battery) => {
-    battery_div.innerHTML = `${Math.round(battery.level * 100)}%`;
-  });
-}, 1000);
 
 function arrayToParagraph(text) {
   if (Array.isArray(text)) text = text.join(" ");
@@ -54,11 +34,10 @@ function speakText(text) {
     pitch: 1,
     rate: 1,
     onstart: () => {
-      jarvis_speaking_img.style.display = "block";
+      assistentStatus.innerHTML = "Speaking...";
     },
     onend: () => {
-      jarvis_speaking_img.style.display = "none";
-      // Resume recognition after speaking ends
+      assistentStatus.innerHTML = "Listening...";
       startVoiceHandler();
     },
   });
@@ -90,13 +69,16 @@ function JarvisCommands(text) {
     speakText("Searching on YouTube");
     const query = text.replace(/^(jarvis )?search/, "").trim();
     window.open(`https://www.youtube.com/results?search_query=${query}`);
+  } else if (text.startsWith("open") || text.startsWith("jarvis open")) {
+    const query = text.replace(/^(jarvis )?open/, "").trim();
+    speakText(`Opening ${query}`);
+    window.open(`https://www.${query}.com`);
   } else {
     StartJarvis(text);
   }
 }
 
 async function StartJarvis(promptText) {
-  const md = window.markdownit();
   const data = {
     contents: [
       {
@@ -127,6 +109,7 @@ async function StartJarvis(promptText) {
   };
 
   try {
+    assistentStatus.innerHTML = "Thinking...";
     const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -137,97 +120,34 @@ async function StartJarvis(promptText) {
 
     if (result.candidates?.length > 0) {
       const text = result.candidates[0].content.parts[0].text;
-      const htmlOutput = md.render(text);
-      output.innerHTML = htmlOutput;
       chatHistory.push({ user: promptText, jarvis: arrayToParagraph(text) });
       speakText(text);
     } else {
-      output.innerHTML = "⚠️ No response received.";
       speakText("No response received. Try again!");
     }
   } catch (err) {
     console.error("API Error:", err);
-    output.innerHTML =
-      "⚠️ API request failed. Please check your key or internet.";
   }
 }
-
-// Input event handling
-[input, submit].forEach((el) =>
-  el.addEventListener("click", handleInputSubmit)
-);
-input.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") handleInputSubmit();
-});
-
-function handleInputSubmit() {
-  const val = input.value.trim();
-  if (!val) {
-    output.innerHTML = "⚠️ Please enter a prompt!";
-    return;
-  }
-
-  if (selectorBox.value === "AI") {
-    StartJarvis(val);
-  } else {
-    speakText("Searching for");
-    window.open(`https://google.com/search?q=${val}`);
-  }
-
-  input.value = "";
-}
-
-// Dropdown Logic
-const dropdownBtn = document.getElementById("dropdownBtn");
-const dropdownMenu = document.getElementById("dropdownMenu");
-const dropdownItems = document.querySelectorAll(".dropdown-item");
-
-dropdownBtn.addEventListener("click", (e) => {
-  e.stopPropagation();
-  dropdownMenu.classList.toggle("show");
-  dropdownBtn.classList.toggle("active");
-});
-
-dropdownItems.forEach((item) =>
-  item.addEventListener("click", (e) => {
-    e.stopPropagation();
-    dropdownItems.forEach((i) => i.classList.remove("selected"));
-    item.classList.add("selected");
-
-    const selectedClass = item.classList[1];
-    dropdownBtn.querySelector(
-      ".dropdown-button-icon"
-    ).className = `dropdown-button-icon ${selectedClass}`;
-
-    dropdownMenu.classList.remove("show");
-    dropdownBtn.classList.remove("active");
-  })
-);
-
-document.addEventListener("click", () => {
-  dropdownMenu.classList.remove("show");
-  dropdownBtn.classList.remove("active");
-});
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    dropdownMenu.classList.remove("show");
-    dropdownBtn.classList.remove("active");
-  }
-});
-
-dropdownMenu.addEventListener("click", (e) => e.stopPropagation());
 
 // 🟢 Trigger Jarvis welcome after user interaction
 document.addEventListener(
   "click",
-  () => {
+  async () => {
     if (!window.__jarvisStarted) {
-      speakText("Welcome Mr Tayyeb, how can I help you?");
+      await Promise.all(
+        speakText("Hello Sir, I am Jarvis. How can I help you?")
+      );
       startVoiceHandler();
       window.__jarvisStarted = true;
     }
   },
   { once: true }
 );
-startVoice.onclick = startVoiceHandler;
+
+document.addEventListener("DOMContentLoaded", () => {
+  assistentStatus.innerHTML = "Click To Start";
+});
+
+window.speakText = speakText;
+window.StartJarvis = StartJarvis;

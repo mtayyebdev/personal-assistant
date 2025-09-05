@@ -18,4 +18,6 @@ let userData = [
 ];
 let chatHistory = [];
 
+window.userData=userData;
+window.chatHistory=chatHistory;
 export { userData, chatHistory };

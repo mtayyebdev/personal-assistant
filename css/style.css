@@ -1,210 +1,19 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
-:root {
-  --gray: rgb(48, 48, 48);
-}
-
-html,
-body {
-  overflow: hidden;
-}
-
-body {
-  background-color: black;
-  color: white;
-  font-family: Arial, sans-serif;
-  margin: 20px;
-}
-
-.container {
-  position: relative;
-}
-.center-logo-con {
-  position: absolute;
-  width: 100%;
-  height: 93vh;
-  z-index: -2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.center-logo-con .watch-j {
-  width: 400px;
-}
-
-.chatting-con {
-  display: flex;
-  position: relative;
-  justify-content: space-between;
-  width: 100%;
-}
-.chatting-con .right,
-.chatting-con .left {
-  width: 20%;
-}
-.chatting-con .right {
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.chatting-con .right div {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-#weather{
+#weather {
   margin-top: 5px;
   display: flex;
   align-items: start;
   flex-direction: column;
 }
 
-.output {
-  margin-top: -40px;
-  position: absolute;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow-y: scroll;
-}
-
-#jarvis_speaking {
-  display: none;
-}
-.output div {
-  width: 60%;
-  height: 340px;
-}
-
-.output::-webkit-scrollbar {
-  display: none;
-}
-
-.bottom-con,
-.top-con {
-  display: flex;
-  justify-content: space-between;
-}
-
-.input-container {
-  width: 100%;
-  display: flex;
-  position: fixed;
-  left: 0;
-  bottom: 40px;
-  background: transparent;
-  align-items: center;
-  justify-content: center;
-}
-
-.input-container div {
-  background-color: var(--gray);
-  display: flex;
-  align-items: center;
-  width: 60%;
-  overflow: hidden;
-  border-radius: 50px;
-  justify-content: space-between;
-}
-
-#inputBox {
-  background-color: transparent;
-  outline: none;
-  color: white;
-  font-size: 18px;
-  border: none;
-  width: 100%;
-  padding: 8px 15px;
-}
-
-#submit {
-  padding: 10px 17px;
-  background-color: white;
-  border: none;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-#inputBox::placeholder {
-  color: gray;
-}
-#submit:hover {
-  background-color: rgb(243, 238, 238);
-}
-
-.jarvis {
-  width: 250px;
-}
-
-#startVoice {
-  border: none;
-  cursor: pointer;
-}
-
-#search_selector{
-  background-color: white;
-  color: black;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  padding: 10px 10px;
-}
-
-
 /* dropdown css start............................................ */
-.dropdown-button {
-  background: rgba(255, 255, 255, 0.95);
-  border: none;
-  padding: 15px 25px;
-  border-radius: 16px;
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  right: 46%;
-  font-size: 16px;
-  font-weight: 600;
-  color: #333;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-  min-width: 200px;
-  justify-content: space-between;
-}
-
-.dropdown-button:hover {
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  background: rgba(255, 255, 255, 1);
-}
-
-.dropdown-arrow {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 6px solid #666;
-  transition: transform 0.3s ease;
-}
-
-.dropdown-button.active .dropdown-arrow {
-  transform: rotate(180deg);
-}
-
 .dropdown-menu {
   position: absolute;
-  right: 46%;
-  top: 50px;
-  background: rgba(255, 255, 255, 0.95);
+  left: 0;
+  color: white;
+  top: 10px;
+  background: rgb(7, 16, 43);
   border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 60px rgba(75, 65, 65, 0.2);
   backdrop-filter: blur(20px);
   opacity: 0;
   visibility: hidden;
@@ -228,7 +37,7 @@ body {
   grid-template-columns: repeat(4, 0.6fr);
   gap: 10px;
   height: 100%;
-    overflow-y: scroll;
+  overflow-y: scroll;
 }
 
 .dropdown-item {
@@ -237,23 +46,23 @@ body {
   align-items: center;
   padding: 20px 15px;
   text-decoration: none;
-  color: #333;
+  color: #ffffff;
   border-radius: 16px;
   transition: all 0.3s ease;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(3, 171, 197, 0.37);
   border: 2px solid transparent;
 }
 
 .dropdown-item:hover {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 208, 255, 0.774);
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   border-color: rgba(102, 126, 234, 0.3);
 }
 
 .dropdown-item.selected {
-  background: rgba(102, 126, 234, 0.1);
+  background: rgba(0, 208, 255, 0.774);
   border-color: rgba(102, 126, 234, 0.5);
 }
 
@@ -301,12 +110,8 @@ body {
   font-weight: 600;
   font-size: 12px;
   text-align: center;
-  color: #555;
+  color: #ffffff;
   transition: color 0.3s ease;
-}
-
-.dropdown-item:hover span {
-  color: #333;
 }
 
 /* Responsive Design */
@@ -342,10 +147,6 @@ body {
 }
 
 @media (max-width: 480px) {
-  body {
-    padding: 15px;
-  }
-
   .dropdown-button {
     padding: 12px 20px;
     font-size: 14px;
@@ -404,6 +205,7 @@ body {
     opacity: 0;
     transform: scale(0.8) translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -417,27 +219,35 @@ body {
 .dropdown-item:nth-child(1) {
   animation-delay: 0.1s;
 }
+
 .dropdown-item:nth-child(2) {
   animation-delay: 0.15s;
 }
+
 .dropdown-item:nth-child(3) {
   animation-delay: 0.2s;
 }
+
 .dropdown-item:nth-child(4) {
   animation-delay: 0.25s;
 }
+
 .dropdown-item:nth-child(5) {
   animation-delay: 0.3s;
 }
+
 .dropdown-item:nth-child(6) {
   animation-delay: 0.35s;
 }
+
 .dropdown-item:nth-child(7) {
   animation-delay: 0.4s;
 }
+
 .dropdown-item:nth-child(8) {
   animation-delay: 0.45s;
 }
+
 .dropdown-item:nth-child(9) {
   animation-delay: 0.5s;
 }

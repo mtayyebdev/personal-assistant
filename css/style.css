@@ -1,0 +1,253 @@
+#weather {
+  margin-top: 5px;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+}
+
+/* dropdown css start............................................ */
+.dropdown-menu {
+  position: absolute;
+  left: 0;
+  color: white;
+  top: 10px;
+  background: rgb(7, 16, 43);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(75, 65, 65, 0.2);
+  backdrop-filter: blur(20px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-15px) scale(0.9);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 1000;
+  overflow: hidden;
+  padding: 15px;
+  min-width: 320px;
+  height: 400px;
+}
+
+.dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.dropdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 0.6fr);
+  gap: 10px;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.dropdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 15px;
+  text-decoration: none;
+  color: #ffffff;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: rgba(3, 171, 197, 0.37);
+  border: 2px solid transparent;
+}
+
+.dropdown-item:hover {
+  background: rgba(0, 208, 255, 0.774);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+.dropdown-item.selected {
+  background: rgba(0, 208, 255, 0.774);
+  border-color: rgba(102, 126, 234, 0.5);
+}
+
+.icon-wrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.icon-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.dropdown-item:hover .icon-wrapper::before {
+  opacity: 1;
+}
+
+.dropdown-item:hover .icon-wrapper {
+  transform: scale(1.1);
+}
+
+.icon-wrapper img {
+  width: 50px;
+  height: 50px;
+  z-index: 1;
+  position: relative;
+}
+
+.dropdown-item span {
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    min-width: 280px;
+    padding: 15px;
+  }
+
+  .dropdown-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .dropdown-item {
+    padding: 15px 10px;
+  }
+
+  .icon-wrapper {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 8px;
+  }
+
+  .icon-wrapper img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .dropdown-item span {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dropdown-button {
+    padding: 12px 20px;
+    font-size: 14px;
+    min-width: 180px;
+  }
+
+  .dropdown-button-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .dropdown-button-icon img {
+    width: 14px;
+    height: 14px;
+  }
+
+  .dropdown-menu {
+    min-width: 260px;
+    padding: 12px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-15px) scale(0.9);
+  }
+
+  .dropdown-menu.show {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  .dropdown-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .dropdown-item {
+    padding: 12px 8px;
+  }
+
+  .icon-wrapper {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 6px;
+  }
+
+  .icon-wrapper img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .dropdown-item span {
+    font-size: 10px;
+  }
+}
+
+/* Staggered animation for grid items */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.dropdown-item {
+  animation: fadeInScale 0.4s ease forwards;
+}
+
+.dropdown-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.dropdown-item:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.dropdown-item:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.dropdown-item:nth-child(4) {
+  animation-delay: 0.25s;
+}
+
+.dropdown-item:nth-child(5) {
+  animation-delay: 0.3s;
+}
+
+.dropdown-item:nth-child(6) {
+  animation-delay: 0.35s;
+}
+
+.dropdown-item:nth-child(7) {
+  animation-delay: 0.4s;
+}
+
+.dropdown-item:nth-child(8) {
+  animation-delay: 0.45s;
+}
+
+.dropdown-item:nth-child(9) {
+  animation-delay: 0.5s;
+}

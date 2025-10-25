@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/12.2.0/markdown-it.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/main-logo.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Jarvis</title>
+
+    <style>
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+          opacity: 0.3;
+        }
+
+        50% {
+          transform: translateY(-20px);
+          opacity: 1;
+        }
+      }
+
+      .animate-fade-in {
+        animation: fade-in 1s ease-out forwards;
+        opacity: 0;
+      }
+
+      .animate-float {
+        animation: float 4s ease-in-out infinite;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div
+      class="w-full h-screen bg-gray-950 text-white overflow-hidden relative"
+    >
+      <!-- {/* Animated background grid */} -->
+      <div class="absolute inset-0 opacity-10">
+        <div
+          class="grid grid-cols-12 grid-rows-12 h-full w-full"
+          id="animatedBg"
+        ></div>
+      </div>
+
+      <!-- {/* Main grid layout */} -->
+      <div class="relative z-10 h-full grid grid-cols-3 grid-rows-3">
+        <div class="dropdown-menu" id="dropdownMenu">
+          <div class="dropdown-grid">
+            <a
+              href="https://eloquentjavascript.net/"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/javascript.jpg" alt="javascript" />
+              </div>
+              <span>Learn JavaScript</span>
+            </a>
+            <a
+              href="https://www.youtube.com/"
+              target="_blank"
+              class="dropdown-item youtube"
+              data-value="youtube"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/youtube.png" alt="YouTube" />
+              </div>
+              <span>YouTube</span>
+            </a>
+            <a
+              href="https://www.facebook.com/"
+              target="_blank"
+              class="dropdown-item facebook"
+              data-value="facebook"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/facebook.png" alt="Facebook" />
+              </div>
+              <span>Facebook</span>
+            </a>
+
+            <a
+              href="https://www.github.com/mtayyebdev/"
+              target="_blank"
+              class="dropdown-item github"
+              data-value="github"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/github.jpg" alt="GitHub" />
+              </div>
+              <span>GitHub</span>
+            </a>
+            <a
+              href="https://www.tiktok.com/@mtayyeb.dev?lang=en"
+              target="_blank"
+              class="dropdown-item"
+              data-value="tiktok"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/tiktok.png" alt="tiktok" />
+              </div>
+              <span>TikTok</span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/muhammad-tayyeb-0247692b2/"
+              target="_blank"
+              class="dropdown-item linkedin"
+              data-value="linkedin"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/linkedin.png" alt="LinkedIn" />
+              </div>
+              <span>LinkedIn</span>
+            </a>
+            <a
+              href="https://www.fiverr.com/m_tayyeb_d?up_rollout=true"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/fiverr.png" alt="fiverr" />
+              </div>
+              <span>Fiverr</span>
+            </a>
+            <a
+              href="https://gemini.google.com/app"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img
+                  src="./images/icons img/googlebard.jpeg"
+                  alt="googlebard"
+                />
+              </div>
+              <span>Gemini</span>
+            </a>
+            <a
+              href="https://chat.openai.com/"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/chatgpt.png" alt="chatgpt" />
+              </div>
+              <span>Chatgpt</span>
+            </a>
+            <a
+              href="https://grok.com/?referrer=website"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/grok3.png" alt="grok3" />
+              </div>
+              <span>Grok3</span>
+            </a>
+            <a
+              href="https://chat.deepseek.com/"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/deepseek.png" alt="deepseek" />
+              </div>
+              <span>DeepSeek</span>
+            </a>
+            <a
+              href="https://ai.invideo.io/"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/invideo.jpeg" alt="invideo" />
+              </div>
+              <span>Invideo AI</span>
+            </a>
+            <a
+              href="https://unsplash.com/"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/unsplash.png" alt="unsplash" />
+              </div>
+              <span>Unsplash</span>
+            </a>
+            <a
+              href="https://pixabay.com/"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/pixaby.png" alt="pixaby" />
+              </div>
+              <span>Pixaby</span>
+            </a>
+            <a
+              href="https://iconscout.com/lottie-animations/web-development"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/iconscout.png" alt="iconscout" />
+              </div>
+              <span>Animated Lotties</span>
+            </a>
+            <a
+              href="https://www.figma.com/files/recents-and-sharing/recently-viewed?fuid=1271494889307170890"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/figma.png" alt="figma" />
+              </div>
+              <span>Figma</span>
+            </a>
+            <a
+              href="https://www.canva.com/templates/"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/canva.jpeg" alt="canva" />
+              </div>
+              <span>Canva</span>
+            </a>
+            <a
+              href="https://dashboard.render.com/"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/render.png" alt="render" />
+              </div>
+              <span>Render</span>
+            </a>
+            <a
+              href="https://console.cloudinary.com/pm/c-8e2edd619f1a24a2764d58e7330af5/developer-dashboard"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/cloudinary.png" alt="cloudinary" />
+              </div>
+              <span>Cloudinary</span>
+            </a>
+            <a
+              href="https://www.postman.com/"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/postman.png" alt="postman" />
+              </div>
+              <span>Postman</span>
+            </a>
+            <a
+              href="https://cloud.mongodb.com/v2/65ce161e789bff1e7383e16f#/overview
+    "
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/mongodb.png" alt="mongodb" />
+              </div>
+              <span>MongoDB</span>
+            </a>
+
+            <a href="https://ezgif.com/" target="_blank" class="dropdown-item">
+              <div class="icon-wrapper">
+                <img src="./images/icons img/ezgif.jpeg" alt="ezgif" />
+              </div>
+              <span>MP4 - GIF</span>
+            </a>
+
+            <a
+              href="https://trycolors.com/mixer"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img
+                  src="./images/icons img/colorMixer.webp"
+                  alt="colorMixer"
+                />
+              </div>
+              <span>Color Mixer</span>
+            </a>
+            <a
+              href="https://fontawesome.com/icons"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/fontawsome.png" alt="fontawsome" />
+              </div>
+              <span>Font Awsome</span>
+            </a>
+            <a
+              href="https://cdnjs.com/libraries/font-awesome/"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img
+                  src="./images/icons img/fontawsomecdn.png"
+                  alt="fontawsomecdn"
+                />
+              </div>
+              <span>Font Awsome CDN</span>
+            </a>
+            <a
+              href="https://getbootstrap.com/docs/5.3/getting-started/introduction/"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/bootstrap.png" alt="bootstrap" />
+              </div>
+              <span>Bootstrap</span>
+            </a>
+            <a
+              href="https://tailwindcss.com/docs/installation"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/tailwind.jpg" alt="tailwind" />
+              </div>
+              <span>Tailwind</span>
+            </a>
+            <a
+              href="https://flowbite.com/docs/getting-started/introduction/"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/flowbite.jpg" alt="flowbite" />
+              </div>
+              <span>Flowbite</span>
+            </a>
+            <a
+              href="https://ui.shadcn.com/"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/shadcn_ui.jpeg" alt="shadcn_ui" />
+              </div>
+              <span>Shadcn UI</span>
+            </a>
+            <a
+              href="https://ui.aceternity.com/components"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/acertinity.png" alt="acertinity" />
+              </div>
+              <span>Acertinity UI</span>
+            </a>
+            <a
+              href="https://swiperjs.com/demos"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/swiper.png" alt="swiper" />
+              </div>
+              <span>Swiper</span>
+            </a>
+            <a
+              href="https://tailblocks.cc/"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/tailblocks.png" alt="tailblocks" />
+              </div>
+              <span>Tailblocks</span>
+            </a>
+            <a
+              href="https://tailgrids.com"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/taigrids.png" alt="taigrids" />
+              </div>
+              <span>Taigrids</span>
+            </a>
+            <a
+              href="https://graygrids.com/templates"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/graygrids.jfif" alt="graygrids" />
+              </div>
+              <span>Gray Grids</span>
+            </a>
+            <a
+              href="https://themewagon.com/theme-tag/"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/themewagon.png" alt="themewagon" />
+              </div>
+              <span>Theme Wagon</span>
+            </a>
+            <a
+              href="https://www.creative-tim.com/templates/free"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/creative.png" alt="Theme Wagon" />
+              </div>
+              <span>Creative Tim</span>
+            </a>
+            <a
+              href="https://electrosmm.com"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/electrosmm.png" alt="electrosmm" />
+              </div>
+              <span>Electro SMM</span>
+            </a>
+            <a
+              href="https://socpanel.com/panel/223759/common"
+              target="_blank"
+              class="dropdown-item"
+            >
+              <div class="icon-wrapper">
+                <img src="./images/icons img/socpanel.jpeg" alt="socpanel" />
+              </div>
+              <span>SOCPanel SMM</span>
+            </a>
+          </div>
+        </div>
+        <!-- {/* Top row */} -->
+        <div class="flex items-start justify-start p-6">
+           <img src="./images/jarvisman.gif" class="w-[250px]" alt="" />
+        </div>
+
+        <div class="flex items-start justify-center">
+          <!-- <div class="bg-gray-800/50 backdrop-blur-sm px-4 py-2 rounded-lg border border-cyan-400/30 ">
+          <span class="text-cyan-400 text-sm font-mono">
+            Analytics
+          </span>
+        </div> -->
+        </div>
+
+        <div class="flex items-start justify-end p-6">
+          <div
+            class="bg-gray-800/50 backdrop-blur-sm cursor-pointer p-2 rounded-lg border border-cyan-400/30"
+            id="dropdownBtn"
+          >
+            <span class="text-cyan-400 text-sm font-mono"
+              ><img src="./images//settings.svg" class="w-[40px]"
+            /></span>
+          </div>
+        </div>
+
+        <!-- {/* Middle row */} -->
+        <div class="flex items-center justify-start p-6">
+          <div class="space-y-2">
+            <div class="w-16 h-1 bg-cyan-400 animate-pulse"></div>
+            <div
+              class="w-12 h-1 bg-cyan-400 animate-pulse"
+              style="animation-delay: 0.5s"
+            ></div>
+            <div
+              class="w-20 h-1 bg-cyan-400 animate-pulse"
+              style="animation-delay: 1s"
+            ></div>
+          </div>
+        </div>
+
+        <!-- {/* CENTER - Main Logo */} -->
+        <div class="flex items-center justify-center">
+          <div>
+            <div id="jarvis-container">
+              <div
+                class="hover-area hover-top"
+                onclick="toggleSector('top')"
+              ></div>
+              <div
+                class="hover-area hover-right"
+                onclick="toggleSector('right')"
+              ></div>
+              <div
+                class="hover-area hover-bottom"
+                onclick="toggleSector('bottom')"
+              ></div>
+              <div
+                class="hover-area hover-left"
+                onclick="toggleSector('left')"
+              ></div>
+
+              <div class="sector-panel sector-top" id="sector-top">
+                <div class="panel-content">
+                  <button class="panel-btn" onclick="executeCommand('tools')">
+                    ⚡
+                  </button>
+                  <button class="panel-btn" onclick="executeCommand('restart')">
+                    🔄
+                  </button>
+                </div>
+              </div>
+
+              <div class="sector-panel sector-right" id="sector-right">
+                <div class="panel-content">
+                  <button
+                    class="panel-btn"
+                    onclick="executeCommand('preferences')"
+                  >
+                    ⚙
+                  </button>
+                  <button
+                    class="panel-btn"
+                    onclick="executeCommand('customize')"
+                  >
+                    🎨
+                  </button>
+                  <button class="panel-btn" onclick="executeCommand('audio')">
+                    🔊
+                  </button>
+                </div>
+              </div>
+
+              <div class="sector-panel sector-bottom" id="sector-bottom">
+                <div class="panel-content">
+                  <button class="panel-btn" onclick="executeCommand('voice')">
+                    🎤
+                  </button>
+                  <button
+                    class="panel-btn"
+                    onclick="executeCommand('gestures')"
+                  >
+                    👋
+                  </button>
+                </div>
+              </div>
+
+              <div class="sector-panel sector-left" id="sector-left">
+                <div class="panel-content">
+                  <button
+                    class="panel-btn"
+                    onclick="executeCommand('user-info')"
+                  >
+                    👤
+                  </button>
+                  <button
+                    class="panel-btn"
+                    onclick="executeCommand('ai-status')"
+                  >
+                    🤖
+                  </button>
+                  <button class="panel-btn" onclick="executeCommand('help')">
+                    ❓
+                  </button>
+                </div>
+              </div>
+
+              <div class="orbital-ring ring-1"></div>
+              <div class="orbital-ring ring-2"></div>
+              <div class="orbital-ring ring-3"></div>
+
+              <div class="main-circle">
+                <div class="inner-circle">
+                  <div class="core"></div>
+                </div>
+
+                <div class="scan-line"></div>
+                <div class="scan-line-2"></div>
+              </div>
+
+              <div class="floating-element element-1"></div>
+              <div class="floating-element element-2"></div>
+              <div class="floating-element element-3"></div>
+              <div class="floating-element element-4"></div>
+              <div class="floating-element element-5"></div>
+              <div class="floating-element element-6"></div>
+            </div>
+            <div class="text-center mt-6">
+              <h1
+                class="text-2xl font-bold text-cyan-400 tracking-wider font-mono animate-pulse"
+                id="assistentStatus"
+              ></h1>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end p-6">
+          <div class="space-y-2 flex flex-col items-end">
+            <div class="w-16 h-1 bg-cyan-400 animate-pulse ml-auto"></div>
+            <div
+              class="w-12 h-1 bg-cyan-400 animate-pulse ml-auto"
+              style="animation-delay: 0.3s"
+            ></div>
+            <div
+              class="w-20 h-1 bg-cyan-400 animate-pulse ml-auto"
+              style="animation-delay: 0.7s"
+            ></div>
+          </div>
+        </div>
+
+        <!-- {/* Bottom row */} -->
+        <div class="flex items-end justify-start p-6">
+         
+          <div
+            class="bg-gray-800/50 text-cyan-400 text-sm font-mono backdrop-blur-sm px-4 py-2 rounded-lg border border-cyan-400/30"
+          >
+            <div class="date flex items-center gap-2">
+              <h3>Date:</h3>
+              <h3 id="date"></h3>
+            </div>
+            <div class="time flex items-center gap-2">
+              <h3>Time:</h3>
+              <h3 id="time"></h3>
+            </div>
+            <div class="online flex items-center gap-2">
+              <h3>Online:</h3>
+              <h3 id="online"></h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-end justify-center">
+          <!-- <div class="bg-gray-800/50 backdrop-blur-sm px-4 py-2 rounded-lg border border-cyan-400/30 ">
+          <span class="text-cyan-400 text-sm font-mono">INTERFACE</span>
+        </div> -->
+        </div>
+
+        <div class="flex items-end justify-end px-4">
+          <!-- <div class="bg-gray-800/50 backdrop-blur-sm px-4 py-2 rounded-lg border border-cyan-400/30"> -->
+          <!-- <span class="text-cyan-400 text-sm font-mono">
+            GETTING Data
+          </span> -->
+          <img src="./images/rotatinglogo.gif" class="w-[250px]" alt="" />
+          <!-- </div> -->
+        </div>
+      </div>
+
+      <!-- {/* Floating particles effect */} -->
+      <div
+        class="absolute inset-0 pointer-events-none"
+        id="particles-effect"
+      ></div>
+    </div>
+
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=vfku26ZA"></script>
+    <script type="module" src="./js/script.js"></script>
+    <script src="./js/ui_script.js"></script>
+  </body>
+</html>

@@ -18,6 +18,16 @@ let userData = [
 ];
 let chatHistory = [];
 
+const songs = [
+  "https://mtayyebdev.github.io/personal-assistant/songs/Aye Khuda aye Khuda jab bana uska hi bana lyrics 😍-FXovEq1VhDk.webm",
+  "https://mtayyebdev.github.io/personal-assistant/songs/Atif Aslam： Musafir Song ｜ Sweetiee Weds NRI ｜ Himansh Kohli, Zoya Afroz ｜ Palak  & Palash Muchhal-Sh3rF46yoKU.mp3",
+  "https://mtayyebdev.github.io/personal-assistant/songs/Banke Hawa Mein Bezubaan Mein [Slowed + Reverb] - Rooh E Daari ｜ Altamash Faridi ｜ Lofi Vibes-hRLanznOiaY.mp3",
+  "https://mtayyebdev.github.io/personal-assistant/songs/Hua Hain Aaj Pehli Baar - Lofi (Slowed + Reverb) ｜ Armaan Malik, Palak Muchhal ｜ SR Lofi-qyEs-dSTWdY.mp3",
+  "https://mtayyebdev.github.io/personal-assistant/songs/Phir Chala - Mashup ⧸ Bollywood Romantic Mashup ⧸ Slowed x Reverb ⧸ Chillout Mashup 2025-JN1vxkBPFIQ.mp3",
+];
+
 window.userData = userData;
 window.chatHistory = chatHistory;
-export { userData, chatHistory };
+window.songs = songs;
+
+export { userData, chatHistory, songs };

@@ -13,15 +13,15 @@ let userData = [
         Tum professional aur thoda futuristic feel dete ho, jise sun ke aisa lage ke ek AI assistant mojsy personally connected hai.
         Tumhari baat conversational, friendly aur thodi witty (smart humor) honi chahiye.
         You are a powerfull programmer in any programming language.
-        `,
+    `,
   },
 ];
 let chatHistory = [];
 const songs = [
-  "../songs/Aye Khuda aye Khuda jab bana uska hi bana lyrics 😍-FXovEq1VhDk.webm",
+  "/songs/Aye Khuda aye Khuda jab bana uska hi bana lyrics 😍-FXovEq1VhDk.webm",
 ];
 
 window.userData = userData;
 window.chatHistory = chatHistory;
 window.songs = songs;
-export { userData, chatHistory,songs };
+export { userData, chatHistory, songs };

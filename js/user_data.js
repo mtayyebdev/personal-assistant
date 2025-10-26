@@ -17,11 +17,7 @@ let userData = [
   },
 ];
 let chatHistory = [];
-const songs = [
-  "/songs/Aye Khuda aye Khuda jab bana uska hi bana lyrics 😍-FXovEq1VhDk.webm",
-];
 
 window.userData = userData;
 window.chatHistory = chatHistory;
-window.songs = songs;
-export { userData, chatHistory, songs };
+export { userData, chatHistory };

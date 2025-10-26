@@ -3,7 +3,7 @@ import { chatHistory, userData, songs } from "./user_data.js";
 const API_KEY = "AIzaSyC_MphMS4dI5acuFMS9T_i4zYM5P2PQyXs";
 const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 const songs = [
-  "/songs/Aye Khuda aye Khuda jab bana uska hi bana lyrics 😍-FXovEq1VhDk.webm",
+  "https://mtayyebdev.github.io/personal-assistant/songs/Aye Khuda aye Khuda jab bana uska hi bana lyrics 😍-FXovEq1VhDk.webm",
 ];
 
 let assistentStatus = document.getElementById("assistentStatus");
